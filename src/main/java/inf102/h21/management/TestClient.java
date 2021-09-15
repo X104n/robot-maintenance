@@ -20,8 +20,7 @@ public class TestClient {
 	 */
 	static IStrategy getStrategy() {
 		// TODO: Enter the strategy you want to test here
-		// return new MyFantasticStrategy();
-		return null;
+		return new RandomStrategy();
 	}
 	
 	/**
@@ -36,8 +35,12 @@ public class TestClient {
 			Model model = new Model(String.format("input/%02d.in", i), strategy);
 			strategy.registerRobots(model.listRobots());
 			model.runSimulation();
-			try { System.out.printf("Score input/%02d.in: %.0f\n", i, model.score()); }
-			catch (IllegalStateException e) {System.out.printf("Score input /%02d.in: %s", i, e.getMessage());}
+			try { 
+				System.out.printf("Score input/%02d.in: %.0f\n", i, model.score()); 
+			}
+			catch (IllegalStateException e) {
+				System.out.printf("Score input /%02d.in: %s\n", i, e.getMessage());
+			}
 		}
 	}
 }

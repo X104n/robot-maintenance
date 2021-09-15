@@ -105,6 +105,15 @@ public class Robot {
 		return getJob()!=null;
 	}
 	
+	/**
+	 * 
+	 */
+	public void stop() {
+		if (!isBusy())
+			return;
+		state.move(id, getLocation());
+	}
+	
 	@Override
 	public String toString() {
 		return "Robot "+ id;

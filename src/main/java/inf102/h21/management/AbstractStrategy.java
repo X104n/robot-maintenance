@@ -40,11 +40,11 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * Finds jobs in backLog and assigns robots
 	 */
 	protected void doJobs() {
+		List<Robot> free = getAvailableRobots();
 		while (!backLog.isEmpty()) {
 			Job job = selectJob();
 			
-			List<Robot> free = getAvailableRobots();
-			List<Robot> selected = selectRobots(job, free); 
+			List<Robot> selected = selectRobots(job, free);
 			if(assignRobots(selected, job)) 
 				removeJob(job);
 			else
@@ -76,7 +76,7 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * 
 	 * @param job - The job to select robots for
 	 * @param available - The Robots to select among
-	 * @return a list of selected robots
+	 * @return return list of selected robots if the job can be executed, else return empty list
 	 */
 	protected abstract List<Robot> selectRobots(Job job, List<Robot> available);
 
@@ -95,11 +95,17 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * @return true if robots assigned to job, false if not
 	 */
 	boolean assignRobots(List<Robot> selected, Job job) { 
-		boolean canDo = selected.size() == job.robotsNeeded;
-			
+		if (selected == null)
+			return false;
+		if (selected.isEmpty())
+			return false;
+		
+		boolean canDo = selected.size() >= job.robotsNeeded;
 		for(Robot r : selected) {
-			if(r.isBusy())
+			if(r.isBusy()) {
+				System.out.println("You selected a robot that was busy.");
 				canDo = false;
+			}
 		}
 		if(canDo) {
 			for(Robot robot : selected) {

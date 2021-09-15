@@ -6,7 +6,6 @@ public class ClosestStrategy extends AbstractStrategy {
 
 	@Override
 	protected List<Robot> selectRobots(Job job, List<Robot> available) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

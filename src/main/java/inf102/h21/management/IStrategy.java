@@ -40,5 +40,9 @@ public interface IStrategy {
 	 * @param job - the job that was completed
 	 */
 	public void registerJobAsFulfilled(Job job);
+	
+	default void updateOrders() {
+		
+	}
 
 }
