@@ -1,3 +1,6 @@
+# Answer File - Mandatory 1
+If your solution is not working as you had planned please note it here and describe your idea on how it was supposed to work.
+
 # Runtime Analysis
 For each method of the different strategies give a runtime analysis in Big-O notation and a description of why it has this runtime.
 
