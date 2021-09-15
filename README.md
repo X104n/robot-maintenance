@@ -55,8 +55,6 @@ In the first task you are to implement a random strategy which selects ``k`` ran
 
 Before any jobs exist the method ``registerRobots(List<Robot> robots)`` is called. The list given in this method are the robots you can use to execute the incoming jobs. This list must be saved for later use. 
 
-You need to make sure that all jobs are executed. If there are not enough available robots for a job you must either take robots away from another job or wait to execute the job until enough robots are available.
-
 ### Task 2
 **Implement ClosestStrategy**
 
@@ -65,11 +63,13 @@ Implement a strategy which always chooses the ``k`` closest robots for the incom
 Maintain the requirements set in task 1.
 
 ### Task 3
-**Implement MyFantasticStrategy**
+**Implement BetterStrategy**
 
 Implement your own strategy. Apply all your algorithmic knowledge to best manouver the robots.
 
 This task does not require you to develop an optimal algorithm for manouvering the robots. As long as all jobs are executed then we will approve the solution. A normal algorithm has correct and incorrect answers, but in this task you are to develop a heurestic. A heurestic has many correct answers, some more correct than others. 
+
+In addition to implementing ``BetterStrategy`` changes in the methods in AbstractStrategy can give you a better performance.
 
 ## Grading
 This mandatory assignment will count 15 % towards your final grade. You will recieve a score between 0 and 15.
@@ -91,13 +91,18 @@ Runtime analysis gives 0-3 points.
     * ``k`` - number of robots required for a job (input up to 10 can be expected)
     Note that not all of these parameters will be relevant to all methods. Some methods might just be dependent on one or two of the parameters.
 
-### Efficient and correct use of Datastructures and Algorithms
-Correct and appropriate use of algorithms and datastructures gives 0-3 points.
- * The goal of this task is to write algorithms that both solve the problem yielding the best result possible, i.e. the solar panels produce as much electricity as possible, and the code runs as efficiently as possible.
- * In many cases it will be efficient to use algorithms and datastructures you have learned in this course, for instance: ``LinkedList``, ``ArrayList``, ``HashMap``, ``PriorityQueue``, etc.
- * We will look at every method you have implemented and assess if you have done this as efficiently as possible.
- * Correctness of the implementation. Task 1 and 2 gives specific instructions on what is meant to be implemented. Your implementations must adhere to these instructions as closely as possible. You can check the correctness of you implementation by running ``RandomTest`` and ``ClosestTest``. 
- * Efficiency of task 3. In task 3 you are to make your own strategy. We evaluate this strategy on how many minutes the solar panels are not generating electricity. The fewer minutes the better your score will be. Everyone who devises a strategy better than task 1 and 2 gets one point. Two points will be given to good solutions, while 3 points will be reserved for the best solutions.
-
+### Functional and Efficient Algorithms and Datastructures
+Correct and appropriate use of algorithms and datastructures gives 0-9 points.
+The goal of this task is to write algorithms that both solve the problem yielding the best result possible, i.e. the solar panels produce as much electricity as possible, and the code runs as efficiently as possible. In this task you will need to use algorithms and datastructures you have learned in this course, for instance: ``LinkedList``, ``ArrayList``, ``HashMap``, ``PriorityQueue``, etc. We will look at every method you have implemented and assess if you have done this as efficiently as possible.
+ * **Task 1** gives 0-3 points.
+    * We will assess if your implementation is functionally correct. You can check this by running ``RandomTest.java``
+    * We will assess whether the methods and classes implemented to complete the task are written as efficiently as possible
+ * **Task 2** gives 0-3 points.
+    * We will assess if your implementation is functionally correct. You can check this by running ``ClosestTest.java``
+    * We will assess whether the methods and classes implemented to complete the task are written as efficiently as possible
+ * **Task 3** gives 0-3 points.
+    * 1 point is given by outperforming ``RandomStrategy`` and ``ClosestStrategy``
+    * 2 points are given to even better solutions
+    * 3 points are given to the most efficient solutions
 
 
