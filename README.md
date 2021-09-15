@@ -45,6 +45,9 @@ which contains a set of field variables and helper methods which may be helpful 
 
 Note that jobs may often require more than one robot to be able to execute.
 
+### General Task
+For each of the following tasks you are to implement classes with a set of their own methods. All methods you utilize to manouver the robots, i.e. the methods in ``IStrategy``, ``AbstractStrategy`` (if you use it) and all classes implemented in task 1, 2 and 3, you must give a runtime analysis (using *Big-O*.
+
 ### Task 1
 **Implement RandomStrategy**
 
@@ -56,13 +59,46 @@ You need to make sure that all jobs are executed. If there are not enough availa
 
 ### Task 2
 **Implement ClosestStrategy**
+
 Implement a strategy which always chooses the ``k`` closest robots for the incoming cleaning jobs.
 
 Maintain the requirements set in task 1.
 
 ### Task 3
+**Implement MyFantasticStrategy**
+
 Implement your own strategy. Apply all your algorithmic knowledge to best manouver the robots.
 
+This task does not require you to develop an optimal algorithm for manouvering the robots. As long as all jobs are executed then we will approve the solution. A normal algorithm has correct and incorrect answers, but in this task you are to develop a heurestic. A heurestic has many correct answers, some more correct than others. 
 Maintain the requirements set in task 1.
+
+## Grading
+This mandatory assignment will count 15 % towards your final grade. You will recieve a score between 0 and 15.
+The following rubric will be used to assess you assignemnt:
+
+### Code Quality
+Code quality gives 0-3 points.
+ * The code must be clear and readable
+ * Avoid repetition of code
+ * Utilize concepts from INF101 to write maintainable and modular code
+
+### Runtime Analysis
+Runtime analysis gives 0-3 points.
+ * Every method you use must have a runtime analysis using Big-O notation. You get points if the runtime is correct, but a reduction in score if it is incorrect. 
+ * The runtime analysis must be written in svar.md. In addition to Big-O notation you must add a description of why the mehtod has this runtime.
+ * The runtime should be expressed using three parameters
+    * ``m`` - number of jobs in the simulation (input up to 1 000 000 can be expected)
+    * ``n`` - number of robots in the simulation (input up to 100 can be expected)
+    * ``k`` - number of robots required for a job (input up to 10 can be expected)
+    Note that not all of these parameters will be relevant to all methods. Some methods might just be dependent on one or two of the parameters.
+
+### Efficient and correct use of Datastructures and Algorithms
+Correct and appropriate use of algorithms and datastructures gives 0-3 points.
+ * The goal of this task is to write algorithms that both solve the problem yielding the best result possible, i.e. the solar panels produce as much electricity as possible, and the code runs as efficiently as possible.
+ * In many cases it will be efficient to use algorithms and datastructures you have learned in this course, for instance: ``LinkedList``, ``ArrayList``, ``HashMap``, ``PriorityQueue``, etc.
+ * We will look at every method you have implemented and assess if you have done this as efficiently as possible.
+ * Correctness of the implementation. Task 1 and 2 gives specific instructions on what is meant to be implemented. Your implementations must adhere to these instructions as closely as possible. You can check the correctness of you implementation by running ``RandomTest`` and ``ClosestTest``. 
+ * Efficiency of task 3. In task 3 you are to make your own strategy. We evaluate this strategy on how many minutes the solar panels are not generating electricity. The fewer minutes the better your score will be. Everyone who devises a strategy better than task 1 and 2 gets one point. Two points will be given to good solutions, while 3 points will be reserved for the best solutions.
+
 
 
