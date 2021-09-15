@@ -24,7 +24,7 @@ You are given a framework which includes:
 
 The package ``inf102.h21.system`` contains code for simulating the environment of robots and solar panels. **You do not have to look at this code**.
 
-The package ``inf102.h21.generators`` is used to generate input for the system. Each generator constructs input of robots and solar panels placed around the field. To visualize the input run ``Visualizer.java``. 
+The package ``inf102.h21.generators`` is used to generate input for the system. Each generator constructs input of robots and solar panels placed around the field. To visualize the input run ``Visualizer.java``. Visualizing the input might help you devise your own strategy in task 3.
 
 ## Task
 Your job as consultant on the project is to devise a strategy for manuevering the robots around the field to allow the solar panels to generate the most amount of electricity over time. For this you must implement the interface ``IStrategy``:
@@ -46,14 +46,14 @@ which contains a set of field variables and helper methods which may be helpful 
 Note that jobs may often require more than one robot to be able to execute.
 
 ### General Task
-For each of the following tasks you are to implement classes with a set of their own methods. All methods you utilize to manouver the robots, i.e. the methods in ``IStrategy``, ``AbstractStrategy`` (if you use it) and all classes implemented in task 1, 2 and 3, you must give a runtime analysis (using *Big-O*.
+For each of the following tasks you are to implement classes with a set of their own methods. All methods you utilize to manouver the robots, i.e. the methods in ``IStrategy``, ``AbstractStrategy`` (if you use it) and all classes implemented in task 1, 2 and 3, you must give a runtime analysis (using *Big-O*).
 
 ### Task 1
 **Implement RandomStrategy**
 
 In the first task you are to implement a random strategy which selects ``k`` random robots out of the available robots to execute the incomming cleaning jobs. The robot you choose must not be busy with another job.
 
-Before any jobs exist the method ``registerRobots(List<Robot> robots)`` is called. The list given in this method are the robots you have the execute all incoming jobs. This list must be saved for later use. 
+Before any jobs exist the method ``registerRobots(List<Robot> robots)`` is called. The list given in this method are the robots you can use to execute the incoming jobs. This list must be saved for later use. 
 
 You need to make sure that all jobs are executed. If there are not enough available robots for a job you must either take robots away from another job or wait to execute the job until enough robots are available.
 
