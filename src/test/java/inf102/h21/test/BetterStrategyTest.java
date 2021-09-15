@@ -5,10 +5,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import compulsory.system.Model;
-import compulsory1.management.IStrategy;
-import compulsory1.management.Job;
-import compulsory1.management.Location;
+import inf102.h21.management.IStrategy;
+import inf102.h21.management.Job;
+import inf102.h21.management.Location;
+import inf102.h21.system.Model;
 
 /**
  * Tests for which test cases your strategy beats both random and closest

@@ -1,4 +1,4 @@
-package compulsory1.generators;
+package inf102.h21.generators;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import compulsory1.management.Job;
-import compulsory1.management.Location;
+import inf102.h21.management.Job;
+import inf102.h21.management.Location;
 
 /**
  * 1) This Generator generates one or more Uniformly distributed center points
@@ -24,7 +24,7 @@ import compulsory1.management.Location;
  * 	  Jobs till be assigned a time drawn uniformly from a time interval
  * 
  * 4) This writes data to a file that can be read by other methods such as
- *    {@link compulsory1.management.TestClient} and {@link compulsory1.generators.Vizualizer}.
+ *    {@link inf102.h21.management.TestClient} and {@link compulsory1.generators.Vizualizer}.
  *    
  *    TODO: This class does not adhere to the Single responsibility principle
  *    TODO: create abstract class to extract code common with the other generators

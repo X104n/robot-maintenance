@@ -1,4 +1,4 @@
-package compulsory1.management;
+package inf102.h21.management;
 
 /**
  * Location represents a point of interest where a robot might go to do work.

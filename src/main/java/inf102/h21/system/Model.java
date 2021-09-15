@@ -1,4 +1,4 @@
-package compulsory.system;
+package inf102.h21.system;
 
 import java.io.File;
 import java.io.FileReader;
@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-import compulsory1.management.IStrategy;
-import compulsory1.management.Job;
-import compulsory1.management.Location;
-import compulsory1.management.Robot;
+import inf102.h21.management.IStrategy;
+import inf102.h21.management.Job;
+import inf102.h21.management.Location;
+import inf102.h21.management.Robot;
 
 /**
  * This class implements RobotState and keeps track of all Robots.

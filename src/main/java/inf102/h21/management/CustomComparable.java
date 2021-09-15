@@ -1,4 +1,4 @@
-package compulsory1.management;
+package inf102.h21.management;
 
 import java.util.ArrayList;
 import java.util.Comparator;

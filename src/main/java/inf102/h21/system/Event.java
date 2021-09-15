@@ -1,4 +1,4 @@
-package compulsory.system;
+package inf102.h21.system;
 
 /**
  * Events represent times when an action is needed from the Strategy class.

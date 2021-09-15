@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import compulsory1.management.Location;
+import inf102.h21.management.Location;
 
 class LocationTest {
 

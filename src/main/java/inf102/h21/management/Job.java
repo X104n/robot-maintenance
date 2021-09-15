@@ -1,4 +1,4 @@
-package compulsory1.management;
+package inf102.h21.management;
 
 /**
  * This class describes a Job needed to be done by one or more robots.

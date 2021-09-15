@@ -1,7 +1,7 @@
-package compulsory.system;
+package inf102.h21.system;
 
-import compulsory1.management.Job;
-import compulsory1.management.Location;
+import inf102.h21.management.Job;
+import inf102.h21.management.Location;
 
 /**
  * This interface describes a class that keeps track of the state of all robots.

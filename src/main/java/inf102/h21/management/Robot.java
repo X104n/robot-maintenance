@@ -1,6 +1,6 @@
-package compulsory1.management;
+package inf102.h21.management;
 
-import compulsory.system.RobotStateManager;
+import inf102.h21.system.RobotStateManager;
 
 /**
  * Robot able to move around performing jobs.

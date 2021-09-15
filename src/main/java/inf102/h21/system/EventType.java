@@ -1,4 +1,4 @@
-package compulsory.system;
+package inf102.h21.system;
 
 /**
  * EventType describes which kind of event occurs.

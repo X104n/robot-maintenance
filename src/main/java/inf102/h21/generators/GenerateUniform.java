@@ -1,4 +1,4 @@
-package compulsory1.generators;
+package inf102.h21.generators;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,8 +9,8 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-import compulsory1.management.Location;
-import compulsory1.management.Job;
+import inf102.h21.management.Job;
+import inf102.h21.management.Location;
 
 /**
  * Creates Job file with Jobs distributed uniformly at random
