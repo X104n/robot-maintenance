@@ -10,6 +10,7 @@ import org.junit.Test;
 import inf102.h21.management.IStrategy;
 import inf102.h21.management.Job;
 import inf102.h21.management.Location;
+import inf102.h21.management.RandomStrategy;
 import inf102.h21.system.Model;
 
 public class RandomTest {
@@ -18,7 +19,7 @@ public class RandomTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		random = null; // new RandomStrategyMaVa();
+		random = new RandomStrategy();
 	}
 	
 	public Model make2Job1RobotModel() {

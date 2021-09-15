@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import inf102.h21.management.ClosestStrategy;
 import inf102.h21.management.IStrategy;
 import inf102.h21.management.Job;
 import inf102.h21.management.Location;
@@ -18,7 +19,7 @@ public class ClosestTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		random = null; //new ClosestStrategy();
+		random = new ClosestStrategy();
 	}
 	
 	public Model make10Job1RobotModel() {

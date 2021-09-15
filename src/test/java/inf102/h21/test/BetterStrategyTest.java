@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import inf102.h21.management.BetterStrategy;
 import inf102.h21.management.IStrategy;
 import inf102.h21.management.Job;
 import inf102.h21.management.Location;
@@ -19,17 +20,12 @@ public class BetterStrategyTest {
 	IStrategy better;
 	
 	@Before
-	void setUp() throws Exception {
-		/**
-		 *  Insert your own classes here
-		 *  random = new RandomStrategy();
-		 *  closest = new ClosestStrategy();
-		 *  better = new BetterStrategy();
-		 */
+	public void setUp() throws Exception {
+		better = new BetterStrategy();
 	}
 	
 	@Test
-	void testBetterOnInput1() throws Exception{
+	public void testBetterOnInput1() throws Exception{
 		String inputFile = "input/01.in";
 		Model rmodel = new Model(inputFile, random);
 		Model cmodel = new Model(inputFile, closest);
@@ -44,7 +40,7 @@ public class BetterStrategyTest {
 	}
 	
 	@Test
-	void testBetterOnInput2() throws Exception{
+	public void testBetterOnInput2() throws Exception{
 		String inputFile = "input/02.in";
 		Model rmodel = new Model(inputFile, random);
 		Model cmodel = new Model(inputFile, closest);
@@ -59,7 +55,7 @@ public class BetterStrategyTest {
 	}
 	
 	@Test
-	void testBetterOnInput3() throws Exception{
+	public void testBetterOnInput3() throws Exception{
 		String inputFile = "input/03.in";
 		Model rmodel = new Model(inputFile, random);
 		Model cmodel = new Model(inputFile, closest);
@@ -74,7 +70,7 @@ public class BetterStrategyTest {
 	}
 	
 	@Test
-	void testBetterOnInput4() throws Exception{
+	public void testBetterOnInput4() throws Exception{
 		String inputFile = "input/04.in";
 		Model rmodel = new Model(inputFile, random);
 		Model cmodel = new Model(inputFile, closest);
@@ -89,7 +85,7 @@ public class BetterStrategyTest {
 	}
 	
 	@Test
-	void testBetterOnInput5() throws Exception{
+	public void testBetterOnInput5() throws Exception{
 		String inputFile = "input/05.in";
 		Model rmodel = new Model(inputFile, random);
 		Model cmodel = new Model(inputFile, closest);
@@ -104,7 +100,7 @@ public class BetterStrategyTest {
 	}
 	
 	@Test
-	void testBetterOnInput6() throws Exception{
+	public void testBetterOnInput6() throws Exception{
 		String inputFile = "input/06.in";
 		Model rmodel = new Model(inputFile, random);
 		Model cmodel = new Model(inputFile, closest);
