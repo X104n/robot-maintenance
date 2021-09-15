@@ -70,7 +70,6 @@ Maintain the requirements set in task 1.
 Implement your own strategy. Apply all your algorithmic knowledge to best manouver the robots.
 
 This task does not require you to develop an optimal algorithm for manouvering the robots. As long as all jobs are executed then we will approve the solution. A normal algorithm has correct and incorrect answers, but in this task you are to develop a heurestic. A heurestic has many correct answers, some more correct than others. 
-Maintain the requirements set in task 1.
 
 ## Grading
 This mandatory assignment will count 15 % towards your final grade. You will recieve a score between 0 and 15.
