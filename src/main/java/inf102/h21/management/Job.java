@@ -14,7 +14,7 @@ package inf102.h21.management;
 public class Job {
 	public final Location location;
 	public final int robotsNeeded, id;
-	public final double t;
+	public final double time;
 	
 	/**
 	 * Constructor creates a new job
@@ -27,12 +27,12 @@ public class Job {
 	public Job(Location location, int id, double t, int robotsNeeded){
 		this.location = location;
 		this.id = id;
-		this.t = t;
+		this.time = t;
 		this.robotsNeeded = robotsNeeded;
 	}
 	
 	@Override
 		public String toString() {
-			return "Job start time: " + t+" at "+location;
+			return "Job start time: " + time+" at "+location;
 		}
 }

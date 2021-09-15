@@ -7,10 +7,10 @@ import org.junit.Test;
 
 import inf102.h21.management.Location;
 
-class LocationTest {
+public class LocationTest {
 
 	@Test
-	void testHashCode() {
+	public void testHashCode() {
 		Location a = new Location(2.4,7.3);
 		Location b = new Location(7.3,2.4);
 		Location c = new Location(2.4,7.3);
@@ -21,16 +21,16 @@ class LocationTest {
 	}
 
 	@Test
-	void testLocation() {
+	public void testLocation() {
 		double x = 7.3;
 		double y = 2.4;
 		Location loc = new Location(x,y);
-		assertEquals(x, loc.x);
-		assertEquals(y, loc.y);
+		assertEquals(x, loc.x, 0.0001);
+		assertEquals(y, loc.y, 0.0001);
 	}
 
 	@Test
-	void testDist() {
+	public void testDist() {
 		double x = 7.3;
 		double y = 2.4;
 		double offset = 3.3;
@@ -44,11 +44,11 @@ class LocationTest {
 
 		offset += Integer.MAX_VALUE;
 		Location far = new Location(x,y+offset);
-		assertEquals(offset, a.dist(far));
+		assertEquals(offset, a.dist(far), 0.00001);
 }
 
 	@Test
-	void testEqualsObject() {
+	public void testEqualsObject() {
 		Location a = new Location(2.4,7.3);
 		Location b = new Location(1.7,0.3);
 		assertTrue(a.equals(a));

@@ -12,16 +12,16 @@ import inf102.h21.management.Job;
 import inf102.h21.management.Location;
 import inf102.h21.system.Model;
 
-class RandomTest {
+public class RandomTest {
 
 	IStrategy random;
 	
 	@Before
-	void setUp() throws Exception {
-		random = null; //new RandomStrategy();
+	public void setUp() throws Exception {
+		random = null; // new RandomStrategyMaVa();
 	}
 	
-	Model make2Job1RobotModel() {
+	public Model make2Job1RobotModel() {
 		ArrayList<Location> startLocation = new ArrayList<>();
 		ArrayList<Job> jobs = new ArrayList<>();
 		startLocation.add(new Location(0, 0));
@@ -30,7 +30,7 @@ class RandomTest {
 		return new Model(startLocation, jobs, random);		
 	}
 
-	Model make1DoubleJob2RobotModel() {
+	public Model make1DoubleJob2RobotModel() {
 		ArrayList<Location> startLocation = new ArrayList<>();
 		ArrayList<Job> jobs = new ArrayList<>();
 		startLocation.add(new Location(0, 0));
@@ -39,7 +39,7 @@ class RandomTest {
 		return new Model(startLocation, jobs, random);		
 	}
 
-	Model make2DoubleJob2RobotModel() {
+	public Model make2DoubleJob2RobotModel() {
 		ArrayList<Location> startLocation = new ArrayList<>();
 		ArrayList<Job> jobs = new ArrayList<>();
 		startLocation.add(new Location(0, 1));
@@ -49,7 +49,7 @@ class RandomTest {
 		return new Model(startLocation, jobs, random);		
 	}
 	
-	Model make10Job1RobotModel() {
+	public Model make10Job1RobotModel() {
 		ArrayList<Location> startLocation = new ArrayList<>();
 		ArrayList<Job> jobs = new ArrayList<>();
 		startLocation.add(new Location(0, 0));
@@ -57,7 +57,7 @@ class RandomTest {
 		return new Model(startLocation, jobs, random);
 	}
 	
-	Model make4Job4RobotModel() {
+	public Model make4Job4RobotModel() {
 		ArrayList<Location> startLocation = new ArrayList<>();
 		ArrayList<Job> jobs = new ArrayList<>();
 		startLocation.add(new Location(1, 1));
@@ -72,7 +72,7 @@ class RandomTest {
 	}
 
 	@Test
-	void testRandomStrategyOn2Job1RobotModel(){
+	public void testRandomStrategyOn2Job1RobotModel(){
 		Model model = make2Job1RobotModel();
 		random.registerRobots(model.listRobots());
 		model.runSimulation();
@@ -80,7 +80,7 @@ class RandomTest {
 	}
 	
 	@Test
-	void testRandomStrategyOn1DoubleJob2RobotModel(){
+	public void testRandomStrategyOn1DoubleJob2RobotModel(){
 		Model model = make1DoubleJob2RobotModel();
 		random.registerRobots(model.listRobots());
 		model.runSimulation();
@@ -88,7 +88,7 @@ class RandomTest {
 	}
 
 	@Test
-	void testRandomStrategyOn2DoubleJob2RobotModel(){
+	public void testRandomStrategyOn2DoubleJob2RobotModel(){
 		Model model = make2DoubleJob2RobotModel();
 		random.registerRobots(model.listRobots());
 		model.runSimulation();
@@ -96,7 +96,7 @@ class RandomTest {
 	}
 	
 	@Test
-	void testRandomStrategyOn10Job1RobotModel(){
+	public void testRandomStrategyOn10Job1RobotModel(){
 		Model model = make10Job1RobotModel();
 		random.registerRobots(model.listRobots());
 		model.runSimulation();
@@ -104,7 +104,7 @@ class RandomTest {
 	}
 	
 	@Test
-	void testRandomStrategyOn4Job4RobotModel(){
+	public void testRandomStrategyOn4Job4RobotModel(){
 		Model model = make4Job4RobotModel();
 		random.registerRobots(model.listRobots());
 		model.runSimulation();

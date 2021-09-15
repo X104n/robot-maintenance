@@ -54,8 +54,8 @@ public class GenerateUniform {
 		}
 		
 		Collections.sort(jobs, (u, v)->{
-			if (u.t == v.t) return 0;
-			else if (u.t < v.t) return -1;
+			if (u.time == v.time) return 0;
+			else if (u.time < v.time) return -1;
 			else return 1;
 		});
 		
@@ -64,7 +64,7 @@ public class GenerateUniform {
 		BufferedWriter out = new BufferedWriter(new FileWriter(output));
 		out.write(String.format("%d %d\n", numberOfRobots, numberOfJobs));
 		for (Location location: robots) out.write(String.format("%f %f\n", location.x, location.y));
-		for (Job job: jobs) out.write(String.format("%f %f %f %d\n", job.location.x, job.location.y, job.t, job.robotsNeeded));
+		for (Job job: jobs) out.write(String.format("%f %f %f %d\n", job.location.x, job.location.y, job.time, job.robotsNeeded));
 		out.flush();
 		out.close();
 	}

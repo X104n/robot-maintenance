@@ -60,7 +60,7 @@ public class Model implements RobotStateManager {
 			this.jobs.add(job);
 			this.robotsPresent.add(new HashSet<Integer>());
 			this.jobsFulfilled.add(false);
-			events.add(new Event(-1, job.id, -1, job.t, EventType.NEWJOB));
+			events.add(new Event(-1, job.id, -1, job.time, EventType.NEWJOB));
 		}
 	}
 
@@ -90,7 +90,7 @@ public class Model implements RobotStateManager {
 			this.jobs.add(job);
 			this.robotsPresent.add(new HashSet<Integer>());
 			this.jobsFulfilled.add(false);
-			events.add(new Event(-1, job.id, -1, job.t, EventType.NEWJOB));
+			events.add(new Event(-1, job.id, -1, job.time, EventType.NEWJOB));
 		}
 	}
 
@@ -146,7 +146,7 @@ public class Model implements RobotStateManager {
 				//System.out.println("Time "+currentTime+" Robot "+next.robotID+" arrived.");
 				if (robotsPresent.get(next.jobID).size() >= jobs.get(next.jobID).robotsNeeded && !jobsFulfilled.get(next.jobID)) {
 					jobsFulfilled.set(next.jobID, true);
-					score += currentTime - jobs.get(next.jobID).t;
+					score += currentTime - jobs.get(next.jobID).time;
 					//System.out.println("Time: "+currentTime+" Job: "+next.jobID+" is completed.");
 					for (Integer i: robotsPresent.get(next.jobID)) {
 						robotInfo.get(i).assignJob(null);
