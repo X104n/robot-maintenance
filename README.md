@@ -23,6 +23,7 @@ You are given a framework which includes:
     * ``move(Location location)`` - robots moves towards the given ``Location`` and awaits further orders. Aborts any previous commands
 
 The package ``inf102.h21.system`` contains code for simulating the environment of robots and solar panels. **You do not have to look at this code**.
+
 The package ``inf102.h21.generators`` is used to generate input for the system. Each generator constructs input of robots and solar panels placed around the field. To visualize the input run ``Visualizer.java``. 
 
 ## Task
@@ -42,7 +43,26 @@ public abstract class AbstractStrategy implements IStrategy {
 ```
 which contains a set of field variables and helper methods which may be helpful to complete the task. But there is no requirement to make use of this class. You may directly implement ``IStrategy`` if you want to.
 
+Note that jobs may often require more than one robot to be able to execute.
+
 ### Task 1
 **Implement RandomStrategy**
-In the first task you are to implement a random strategy which selects a random robot out of the available robots to execute the incomming cleaning jobs. The robot you choose must not be busy with another job. 
+
+In the first task you are to implement a random strategy which selects ``k`` random robots out of the available robots to execute the incomming cleaning jobs. The robot you choose must not be busy with another job.
+
+Before any jobs exist the method ``registerRobots(List<Robot> robots)`` is called. The list given in this method are the robots you have the execute all incoming jobs. This list must be saved for later use. 
+
+You need to make sure that all jobs are executed. If there are not enough available robots for a job you must either take robots away from another job or wait to execute the job until enough robots are available.
+
+### Task 2
+**Implement ClosestStrategy**
+Implement a strategy which always chooses the ``k`` closest robots for the incoming cleaning jobs.
+
+Maintain the requirements set in task 1.
+
+### Task 3
+Implement your own strategy. Apply all your algorithmic knowledge to best manouver the robots.
+
+Maintain the requirements set in task 1.
+
 
