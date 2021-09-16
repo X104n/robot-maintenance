@@ -91,10 +91,10 @@ Note that not all of these parameters will be relevant to all methods. Some meth
 Correct and appropriate use of algorithms and datastructures gives 0-9 points.
 The goal of this task is to write algorithms that both solve the problem yielding the best result possible, i.e. the solar panels produce as much electricity as possible, and the code runs as efficiently as possible. In this task you will need to use algorithms and datastructures you have learned in this course, for instance: ``LinkedList``, ``ArrayList``, ``HashMap``, ``PriorityQueue``, etc. We will look at every method you have implemented and assess if you have done this as efficiently as possible.
  * **Task 1** gives 0-3 points.
-    * We will assess if your implementation is functionally correct. You can check this by running ``RandomTest.java``
+    * We will assess if your implementation is functionally correct
     * We will assess whether the methods and classes implemented to complete the task are written as efficiently as possible
  * **Task 2** gives 0-3 points.
-    * We will assess if your implementation is functionally correct. You can check this by running ``ClosestTest.java``
+    * We will assess if your implementation is functionally correct
     * We will assess whether the methods and classes implemented to complete the task are written as efficiently as possible
  * **Task 3** gives 0-3 points.
     * 1 point is given by outperforming ``RandomStrategy`` and ``ClosestStrategy`` on some inputs
