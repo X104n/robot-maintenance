@@ -41,4 +41,6 @@ public interface IStrategy {
 	 */
 	public void registerJobAsFulfilled(Job job);
 
+	public default void updateOrders(){};
+
 }

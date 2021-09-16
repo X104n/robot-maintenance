@@ -189,8 +189,10 @@ public class Model implements RobotStateManager {
 				break;
 
 			case TARGETREACHED:
+				currentTime = next.time;
+				updatePosition(next.robotID);
 				robotInfo.get(next.robotID).setLocation(null);
-				//strategy.updateOrders();
+				strategy.updateOrders();
 				break;
 
 			default:
