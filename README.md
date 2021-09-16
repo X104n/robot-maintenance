@@ -94,6 +94,6 @@ The goal of this task is to write algorithms that both solve the problem yieldin
     * We will assess if your implementation is functionally correct. You can check this by running ``ClosestTest.java``
     * We will assess whether the methods and classes implemented to complete the task are written as efficiently as possible
  * **Task 3** gives 0-3 points.
-    * 1 point is given by outperforming ``RandomStrategy`` and ``ClosestStrategy``
-    * 2 points are given to even better solutions
+    * 1 point is given by outperforming ``RandomStrategy`` and ``ClosestStrategy`` on some inputs
+    * 2 point is given much better than ``RandomStrategy`` and ``ClosestStrategy`` on most inputs
     * 3 points are given to the most efficient solutions
