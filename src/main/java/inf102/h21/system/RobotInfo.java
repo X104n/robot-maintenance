@@ -96,6 +96,8 @@ public class RobotInfo {
 		
 		//update time
 		double deltaTime = currentTime - lastUpdateTime;
+		if(deltaTime<0)
+			throw new IllegalArgumentException("Can only update to a later time.");
 		lastUpdateTime = currentTime;
 	
 		// No target

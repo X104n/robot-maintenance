@@ -40,10 +40,11 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * Finds jobs in backLog and assigns robots
 	 */
 	protected void doJobs() {
+		List<Robot> free = getAvailableRobots();
+		
 		while (!backLog.isEmpty()) {
 			Job job = selectJob();
-			
-			List<Robot> free = getAvailableRobots();
+				
 			List<Robot> selected = selectRobots(job, free); 
 			if(assignRobots(selected, job)) 
 				removeJob(job);

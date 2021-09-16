@@ -25,6 +25,8 @@ public class Job {
 	 * @param robotsNeeded - number of robots that need to be at the locations at once to do the job
 	 */
 	public Job(Location location, int id, double t, int robotsNeeded){
+		if(location == null)
+			throw new NullPointerException("Jobs need a location that is not null");
 		this.location = location;
 		this.id = id;
 		this.time = t;
