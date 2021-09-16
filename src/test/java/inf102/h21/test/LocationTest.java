@@ -2,6 +2,7 @@ package inf102.h21.test;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -51,10 +52,9 @@ public class LocationTest {
 	public void testEqualsObject() {
 		Location a = new Location(2.4,7.3);
 		Location b = new Location(1.7,0.3);
-		assertTrue(a.equals(a));
-		assertTrue(b.equals(b));
-		assertFalse(a.equals(b));
-		System.out.println(Math.ulp((double)Integer.MAX_VALUE)*Math.sqrt(100));
+		Location c = new Location(2.4,7.3);
+		assertNotEquals(a,b);
+		assertEquals(a,c);
 	}
 
 }
