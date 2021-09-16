@@ -1,10 +1,12 @@
 package inf102.h21.system;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -40,27 +42,41 @@ public class Model implements RobotStateManager {
 	 * @param file
 	 */
 	public Model(String file, IStrategy strategy) throws Exception{ // Read problem from file
-		Scanner sc = new Scanner(new FileReader(new File(file)));
-		this.numberOfRobots = sc.nextInt(); int numberOfJobs = sc.nextInt();
+
+		jobs = new ArrayList<>();
+
+		readModelFromFile(this,file);
+
 		this.events = new PriorityQueue<>();
 		this.strategy = strategy;
 
-		//setup robot;
-		for (int i = 0; i < numberOfRobots; i++) {
-			Location location = new Location(sc.nextDouble(), sc.nextDouble());
-			robotInfo.add(new RobotInfo(robotInfo.size(), location));
-		}
-
-		//set jobs
-		this.jobs = new ArrayList<>();
+		//generate job events
 		this.robotsPresent = new ArrayList<>();
 		this.jobsFulfilled = new ArrayList<>();
-		for (int i = 0; i < numberOfJobs; i++) {
-			Job job = new Job(new Location(sc.nextDouble(), sc.nextDouble()), i, sc.nextDouble(), sc.nextInt());
-			this.jobs.add(job);
+
+		for (Job job : jobs) {
 			this.robotsPresent.add(new HashSet<Integer>());
 			this.jobsFulfilled.add(false);
 			events.add(new Event(-1, job.id, -1, job.time, EventType.NEWJOB));
+		}
+	}
+
+	private static void readModelFromFile(Model model, String file) throws FileNotFoundException {
+		Scanner sc = new Scanner(new FileReader(new File(file)));
+		sc.useLocale(Locale.US);
+		model.numberOfRobots = sc.nextInt(); 
+		int numberOfJobs = sc.nextInt();
+
+		//setup robot;
+		for (int i = 0; i < model.numberOfRobots; i++) {
+			Location location = new Location(sc.nextDouble(), sc.nextDouble());
+			model.robotInfo.add(new RobotInfo(model.robotInfo.size(), location));
+		}
+
+		//read jobs
+		for (int i = 0; i < numberOfJobs; i++) {
+			Job job = new Job(new Location(sc.nextDouble(), sc.nextDouble()), i, sc.nextDouble(), sc.nextInt());
+			model.jobs.add(job);
 		}
 	}
 

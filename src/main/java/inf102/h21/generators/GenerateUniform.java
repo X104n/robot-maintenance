@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -59,13 +60,6 @@ public class GenerateUniform {
 			else return 1;
 		});
 		
-		//printout
-		File output = new File(file);
-		BufferedWriter out = new BufferedWriter(new FileWriter(output));
-		out.write(String.format("%d %d\n", numberOfRobots, numberOfJobs));
-		for (Location location: robots) out.write(String.format("%f %f\n", location.x, location.y));
-		for (Job job: jobs) out.write(String.format("%f %f %f %d\n", job.location.x, job.location.y, job.time, job.robotsNeeded));
-		out.flush();
-		out.close();
+		FileHandler.writeToFile(numberOfRobots, numberOfJobs, file, robots, jobs);
 	}
 }

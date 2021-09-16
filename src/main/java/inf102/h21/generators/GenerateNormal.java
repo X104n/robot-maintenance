@@ -85,14 +85,7 @@ public class GenerateNormal {
 			else return 1;
 		});
 		
-		//printout
-		File output = new File(file);
-		BufferedWriter out = new BufferedWriter(new FileWriter(output));
-		out.write(String.format("%d %d\n", numberOfRobots, numberOfJobs));
-		for (Location location: robots) out.write(String.format("%f %f\n", location.x, location.y));
-		for (Job job: jobs) out.write(String.format("%f %f %f %d\n", job.location.x, job.location.y, job.time, job.robotsNeeded));
-		out.flush();
-		out.close();
+		FileHandler.writeToFile(numberOfRobots, numberOfJobs, file, robots, jobs);
 	}
 	
 	private Location generateLocation(Location center) {
