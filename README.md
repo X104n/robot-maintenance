@@ -47,11 +47,12 @@ Note that jobs may often require more than one robot to be able to execute.
 
 ### General Task
 For each of the following tasks you are to implement classes with a set of their own methods. All methods you utilize to manouver the robots, i.e. the methods in ``IStrategy``, ``AbstractStrategy`` (if you use it) and all classes implemented in task 1, 2 and 3, you must give a runtime analysis (using *Big-O*). Fill out svar.md with what runtime each method has for the different strategies and why they have that runtime.
+In particular the runtime of selectRobot() method in task 1 and 2 will be important.
 
 To see how efficient the different strategies are run ``TestClient.java``. Add the strategy you want to test in ``TestClient::getStrategy``.
 
 ### Task 1 - RandomStrategy
-Implement ``RandomStrategy``, a strategy which selects ``k`` **random** robots out of the available robots to execute the incomming cleaning jobs. The robot you choose must not be busy with another job.
+Implement ``RandomStrategy``, a strategy which selects ``k`` **random** robots out of the available robots to execute the incomming cleaning jobs. The robot you choose must not be busy with another job. 
 
 ### Task 2 - ClosestStrategy
 Implement ``ClosestStrategy``, a strategy which always chooses the ``k`` **closest** robots for the incoming cleaning jobs.The robot you choose must not be busy with another job.
