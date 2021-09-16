@@ -8,8 +8,6 @@ import org.junit.Test;
 import inf102.h21.management.BetterStrategy;
 import inf102.h21.management.ClosestStrategy;
 import inf102.h21.management.IStrategy;
-import inf102.h21.management.Job;
-import inf102.h21.management.Location;
 import inf102.h21.management.RandomStrategy;
 import inf102.h21.system.Model;
 
@@ -59,26 +57,21 @@ public class BetterStrategyTest {
 	}
 	
 	public void testStrategy(String inputFile) throws Exception{
-		Model rmodel = new Model(inputFile, random);
-		Model cmodel = new Model(inputFile, closest);
-		Model bmodel = new Model(inputFile, better);
-		random.registerRobots(rmodel.listRobots());
-		closest.registerRobots(cmodel.listRobots());
-		better.registerRobots(bmodel.listRobots());
-		rmodel.runSimulation();
-		cmodel.runSimulation();
-		bmodel.runSimulation();
+		Model rmodel = runSimulation(inputFile, random);
+		Model cmodel = runSimulation(inputFile, closest);
+		Model bmodel = runSimulation(inputFile, better);
 		assertBetterScore(rmodel.score(), cmodel.score(), bmodel.score(),inputFile);
 	}
 
-	private void runSimulation() {
-		
+	private static Model runSimulation(String inputFile, IStrategy strategy) throws Exception {
+		Model model = new Model(inputFile, strategy);
+		strategy.registerRobots(model.listRobots());
+		model.runSimulation();
+		return model;
 	}
 	
 	private void assertBetterScore(double randomScore, double closestScore, double betterScore, String file) {
 		assertTrue("random strategy beats best strategy on "+file,randomScore > betterScore);
 		assertTrue("closest strategy beats best strategy on "+file,closestScore > betterScore);
 	}
-	
-
 }
