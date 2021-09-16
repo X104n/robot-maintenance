@@ -5,7 +5,7 @@ If your solution is not working as you had planned please note it here and descr
 For each method of the different strategies give a runtime analysis in Big-O notation and a description of why it has this runtime.
 
 **If you have implemented new methods not listed you must add these as well.**
-## RandomStrategy
+## Task 1 - RandomStrategy
 ### IStrategy
 * ``registerRobots(List<Robot> robots)``: O(?)
     * *Insert description of why the method has the given runtime*
@@ -30,7 +30,7 @@ For each method of the different strategies give a runtime analysis in Big-O not
 * ``selectRobots(Job job, List<Robot> available)``: O(?)
     * *Insert description of why the method has the given runtime*
 
-## ClosestStrategy
+## Task 2 - ClosestStrategy
 ### IStrategy
 * ``registerRobots(List<Robot> robots)``: O(?)
     * *Insert description of why the method has the given runtime*
@@ -55,7 +55,7 @@ For each method of the different strategies give a runtime analysis in Big-O not
 * ``selectRobots(Job job, List<Robot> available)``: O(?)
     * *Insert description of why the method has the given runtime*
 
-## BetterStrategy
+## Task 3 - BetterStrategy
 ### IStrategy
 * ``registerRobots(List<Robot> robots)``: O(?)
     * *Insert description of why the method has the given runtime*
