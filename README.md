@@ -52,7 +52,9 @@ In particular the runtime of selectRobot() method in task 1 and 2 will be import
 To see how efficient the different strategies are run ``TestClient.java``. Add the strategy you want to test in ``TestClient::getStrategy``.
 
 ### Task 1 - RandomStrategy
-Implement ``RandomStrategy``, a strategy which selects ``k`` **random** robots out of the available robots to execute the incomming cleaning jobs. The robot you choose must not be busy with another job. 
+Implement ``RandomStrategy``, a strategy which selects ``k`` **random** robots out of the available robots to execute the incoming cleaning jobs. The robot you choose must not be busy with another job. 
+
+Analyze the runtime of ``assignRobots()`` in ``AbstractStrategy``. Is there a way to improve the runtime of this method?
 
 ### Task 2 - ClosestStrategy
 Implement ``ClosestStrategy``, a strategy which always chooses the ``k`` **closest** robots for the incoming cleaning jobs.The robot you choose must not be busy with another job.
