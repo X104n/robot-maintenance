@@ -8,4 +8,9 @@ public class RandomStrategy extends AbstractStrategy {
 	protected List<Robot> selectRobots(Job job, List<Robot> available) {
 		return null;
 	}
+
+	@Override
+	public String getName() {
+		return "Random strategy";
+	}
 }

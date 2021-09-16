@@ -9,4 +9,9 @@ public class BetterStrategy extends AbstractStrategy {
 		return null;
 	}
 
+	@Override
+	public String getName() {
+		return "Better strategy";
+	}
+
 }

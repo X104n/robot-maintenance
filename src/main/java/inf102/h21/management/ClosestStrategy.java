@@ -10,4 +10,9 @@ public class ClosestStrategy extends AbstractStrategy {
 		return null;
 	}
 
+	@Override
+	public String getName() {
+		return "Closest strategy";
+	}
+
 }
