@@ -5,9 +5,14 @@ import java.util.List;
 public class ClosestStrategy extends AbstractStrategy {
 
 	@Override
-	protected List<Robot> selectRobots(Job job, List<Robot> available) {
+	protected List<Robot> selectRobots(Job job) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String getName() {
+		return "Closest strategy";
 	}
 
 }
