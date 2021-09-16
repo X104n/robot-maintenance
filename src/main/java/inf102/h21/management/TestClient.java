@@ -1,6 +1,7 @@
 package inf102.h21.management;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import inf102.h21.system.Model;
 
@@ -14,13 +15,25 @@ import inf102.h21.system.Model;
  */
 public class TestClient {
 	
+	static List<String> getTestFiles(){
+		ArrayList<String> files = new ArrayList<>();
+		for (int i = 1; i <= 6; i++) {
+			files.add(String.format("input/%02d.in", i));
+		}
+		return files;
+	}
+	
 	/**
 	 * Returns a strategy to be tested
 	 * @return IStragegy
 	 */
-	static IStrategy getStrategy() {
+	static List<IStrategy> getStrategies() {
 		// TODO: Enter the strategy you want to test here
-		return new RandomStrategy();
+		ArrayList<IStrategy> strategies = new ArrayList<>();
+		strategies.add(new RandomStrategy());
+		strategies.add(new ClosestStrategy());
+		strategies.add(new BetterStrategy());
+		return strategies;
 	}
 	
 	/**
@@ -30,16 +43,18 @@ public class TestClient {
 	 * @param args
 	 */
 	public static void main(String args[]) throws Exception{
-		for (int i = 1; i <= 6; i++) {
-			IStrategy strategy = getStrategy();
-			Model model = new Model(String.format("input/%02d.in", i), strategy);
-			strategy.registerRobots(model.listRobots());
-			model.runSimulation();
-			try { 
-				System.out.printf("Score input/%02d.in: %.0f\n", i, model.score()); 
-			}
-			catch (IllegalStateException e) {
-				System.out.printf("Score input /%02d.in: %s\n", i, e.getMessage());
+		for (IStrategy strategy:getStrategies()) {
+			System.out.println("Scores for "+strategy.getName());
+			for(String file:getTestFiles()) {
+				Model model = new Model(file, strategy);
+				strategy.registerRobots(model.listRobots());
+				model.runSimulation();
+				try { 
+					System.out.printf("Score %s: %.0f\n", file, model.score()); 
+				}
+				catch (IllegalStateException e) {
+					System.out.printf("Score on %s: %s\n", file, e.getMessage());
+				}
 			}
 		}
 	}

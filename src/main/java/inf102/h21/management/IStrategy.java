@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface IStrategy {
 	
+	public String getName();
+	
 	/**
 	 * This method informs the strategy of which robots are available.
 	 * Each robot is placed at a starting position and can be moved with the move commands.
