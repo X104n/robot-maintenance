@@ -11,6 +11,9 @@ import java.util.List;
  */
 public interface IStrategy {
 	
+	/**
+	 * @return The name given to this strategy.
+	 */
 	public String getName();
 	
 	/**
@@ -41,8 +44,12 @@ public interface IStrategy {
 	 * 
 	 * @param job - the job that was completed
 	 */
-	public void registerJobAsFulfilled(Job job);
+	public void registerJobAsFulfilled(Job job, List<Robot> robots);
 
+	/**
+	 * This method is called by the system when other events occur.
+	 * A notable example is when a Robot has been issued the move command and reached a target, but not completed any job.
+	 */
 	public default void updateOrders(){};
 
 }

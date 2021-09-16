@@ -166,9 +166,13 @@ public class Model implements RobotStateManager {
 					//System.out.println("Time: "+currentTime+" Job: "+next.jobID+" is completed.");
 					for (Integer i: robotsPresent.get(next.jobID)) {
 						robotInfo.get(i).assignJob(null);
+						robotInfo.get(i);
 					}
 					// Call to student code
-					strategy.registerJobAsFulfilled(jobs.get(next.jobID));
+					strategy.registerJobAsFulfilled(jobs.get(next.jobID),getRobots(robotsPresent.get(next.jobID)));
+				}
+				else {
+					strategy.updateOrders();
 				}
 
 				break;
@@ -200,6 +204,14 @@ public class Model implements RobotStateManager {
 			}
 
 		}
+	}
+
+	private List<Robot> getRobots(Iterable<Integer> ids) {
+		List<Robot> robots = new ArrayList<>();
+		for (int i:ids) {
+			robots.add(new Robot(i, this));
+		}
+		return robots;
 	}
 
 	/**

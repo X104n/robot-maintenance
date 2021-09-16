@@ -11,6 +11,7 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * List of all robots, both available and occupied
 	 */
 	protected List<Robot> robots;
+	protected List<Robot> available;
 	/**
 	 * List of jobs not yet executed
 	 */
@@ -18,11 +19,13 @@ public abstract class AbstractStrategy implements IStrategy {
 	
 	public AbstractStrategy() {
 		backLog = new LinkedList<Job>();
+		
 	}
 	
 	@Override
 	public void registerRobots(List<Robot> robots) {
 		this.robots = new ArrayList<Robot>(robots); 
+		available = new ArrayList<>(robots);
 	}
 
 	@Override
@@ -32,7 +35,8 @@ public abstract class AbstractStrategy implements IStrategy {
 	}
 	
 	@Override
-	public void registerJobAsFulfilled(Job job) {
+	public void registerJobAsFulfilled(Job job, List<Robot> robots) {
+		available.addAll(robots);
 		doJobs();
 	}
 
@@ -40,12 +44,10 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * Finds jobs in backLog and assigns robots
 	 */
 	protected void doJobs() {
-		List<Robot> free = getAvailableRobots();
 		
 		while (!backLog.isEmpty()) {
 			Job job = selectJob();
-				
-			List<Robot> selected = selectRobots(job, free); 
+			List<Robot> selected = selectRobots(job); 
 			
 			if(assignRobots(selected, job)) 
 				removeJob(job);
@@ -80,7 +82,7 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * @param available - The Robots to select among
 	 * @return return list of selected robots if the job can be executed, else return empty list
 	 */
-	protected abstract List<Robot> selectRobots(Job job, List<Robot> available);
+	protected abstract List<Robot> selectRobots(Job job);
 
 	/**
 	 * When a Robot is not assigned to a Job it is just waiting
@@ -112,6 +114,7 @@ public abstract class AbstractStrategy implements IStrategy {
 		if(canDo) {
 			for(Robot robot : selected) {
 				robot.move(job);
+				available.remove(robot);
 			}
 		}
 		else {
@@ -131,12 +134,7 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * @return list of all available robots
 	 */
 	public List<Robot> getAvailableRobots(){
-		ArrayList<Robot> free = new ArrayList<Robot>(); 
-		for(Robot robot : robots) {
-			if(!robot.isBusy())
-				free.add(robot);
-		}
-		return free;
+		return available;
 	}
 
 }
