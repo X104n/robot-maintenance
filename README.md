@@ -47,7 +47,7 @@ Note that jobs may often require more than one robot to be able to execute.
 
 ### General Task
 For each of the following tasks you are to implement classes with a set of their own methods. All methods you utilize to manouver the robots, i.e. the methods in ``IStrategy``, ``AbstractStrategy`` (if you use it) and all classes implemented in task 1, 2 and 3, you must give a runtime analysis (using *Big-O*). Fill out svar.md with what runtime each method has for the different strategies and why they have that runtime.
-In particular the runtime of selectRobot() method in task 1 and 2 will be important.
+In particular the runtime of selectRobot() method in task 1 and 2 will be important. But also the runtime of methods implemented in ``AbstractStrategy`` should be analysed for full score.
 
 To see how efficient the different strategies are run ``TestClient.java``. Add the strategy you want to test in ``TestClient::getStrategy``.
 
@@ -60,9 +60,9 @@ Implement ``ClosestStrategy``, a strategy which always chooses the ``k`` **close
 ### Task 3 - BetterStrategy
 Implement your own strategy: ``BetterStrategy``. Apply all your algorithmic knowledge to best manouver the robots.
 
-This task does not require you to develop an optimal algorithm for manouvering the robots. As long as all jobs are executed then we will approve the solution. A normal algorithm has correct and incorrect answers, but in this task you are to develop a heuristic. A heuristic has many correct answers, some more correct than others. 
+This task does not require you to develop an optimal algorithm for manouvering the robots. As long as all jobs are executed then we will approve the solution. A normal algorithm has correct and incorrect answers, but in this task you are to develop a heuristic. A heuristic has many answers, some more correct than others. The primary goal in this task is not to make your code fast, but to get as low numbers as possible when running ``TestClient``.  
 
-In addition to implementing ``BetterStrategy``, changes in the methods in AbstractStrategy can give you a better performance.
+When implementing ``BetterStrategy``, overriding existing methods in AbstractStrategy can give you a better performance.
 
 ## Grading
 This mandatory assignment will count 15 % towards your final grade. You will recieve a score between 0 and 15.
