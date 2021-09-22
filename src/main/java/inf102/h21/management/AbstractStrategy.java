@@ -134,7 +134,7 @@ public abstract class AbstractStrategy implements IStrategy {
 	 * @return list of all available robots
 	 */
 	public List<Robot> getAvailableRobots(){
-		return available;
+		return new ArrayList<Robot>(available);
 	}
 
 }
