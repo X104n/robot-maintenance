@@ -32,7 +32,7 @@ public class TestClient {
 		ArrayList<IStrategy> strategies = new ArrayList<>();
 		strategies.add(new RandomStrategy());
 		strategies.add(new ClosestStrategy());
-		//strategies.add(new BetterStrategy());
+		strategies.add(new BetterStrategy());
 		return strategies;
 	}
 	

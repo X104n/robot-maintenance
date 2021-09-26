@@ -35,6 +35,10 @@ public class ClosestStrategy extends AbstractStrategy {
             }
             theChosenOnes.add(closest);
         }
+//        System.out.println(job.robotsNeeded);
+//        System.out.println(available.size());
+//        System.out.println(theChosenOnes);
+//        System.out.println(job.location);
         return theChosenOnes;
     }
 

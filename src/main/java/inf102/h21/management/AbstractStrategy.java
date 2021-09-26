@@ -7,134 +7,164 @@ import java.util.Queue;
 
 public abstract class AbstractStrategy implements IStrategy {
 
-	/**
-	 * List of all robots, both available and occupied
-	 */
-	protected List<Robot> robots;
-	protected List<Robot> available;
-	/**
-	 * List of jobs not yet executed
-	 */
-	protected Queue<Job> backLog;
-	
-	public AbstractStrategy() {
-		backLog = new LinkedList<Job>();
-		
-	}
-	
-	@Override
-	public void registerRobots(List<Robot> robots) {
-		this.robots = new ArrayList<Robot>(robots); 
-		available = new ArrayList<>(robots);
-	}
+    /**
+     * List of all robots, both available and occupied
+     */
+    protected List<Robot> robots;
+    protected List<Robot> available;
+    /**
+     * List of jobs not yet executed
+     */
+    protected Queue<Job> backLog;
 
-	@Override
-	public void registerNewJob(Job job) {
-		backLog.add(job);		
-		doJobs();
-	}
-	
-	@Override
-	public void registerJobAsFulfilled(Job job, List<Robot> robots) {
-		available.addAll(robots);
-		doJobs();
-	}
+    public AbstractStrategy() {
+        backLog = new LinkedList<Job>();
 
-	/**
-	 * Finds jobs in backLog and assigns robots
-	 */
-	protected void doJobs() {
-		
-		while (!backLog.isEmpty()) {
-			Job job = selectJob();
-			List<Robot> selected = selectRobots(job); 
-			
-			if(assignRobots(selected, job)) 
-				removeJob(job);
-			else
-				break;
-		}
-		if(backLog.isEmpty())
-			moveFreeRobots();
-	}
-	
-	/**
-	 * Selects a Job from the list of available jobs
-	 * Currently selects the job at the top of the list
-	 * 
-	 * @return most appropriate job
-	 */
-	protected Job selectJob() {
-		return backLog.peek();
-	}
+    }
 
-	protected void removeJob(Job job) { 
-		if(backLog.peek().equals(job))
-			backLog.poll();
-		else
-			backLog.remove(job);
-	}
+    @Override
+    public void registerRobots(List<Robot> robots) {
+        this.robots = new ArrayList<Robot>(robots);
+        available = new ArrayList<>(robots);
+    }
 
-	/**
-	 * Select robots for the job. Should select robots most appropriate for the job.
-	 * 
-	 * @param job - The job to select robots for
-	 * @param available - The Robots to select among
-	 * @return return list of selected robots if the job can be executed, else return empty list
-	 */
-	protected abstract List<Robot> selectRobots(Job job);
+    @Override
+    public void registerNewJob(Job job) {
+        backLog.add(job);
+        doJobs();
+    }
 
-	/**
-	 * When a Robot is not assigned to a Job it is just waiting
-	 * We can then position these robots such that when a new job comes in
-	 * the robots are already close to the job.
-	 */
-	protected void moveFreeRobots() {
-		// TODO: This method could be suited for task 3
-	}
-	
-	/**
-	 * Sends the selected Robots to their Job
-	 * 
-	 * @return true if robots assigned to job, false if not
-	 */
-	boolean assignRobots(List<Robot> selected, Job job) { 
-		if (selected == null)
-			return false;
-		if (selected.isEmpty())
-			return false;
-		
-		boolean canDo = selected.size() >= job.robotsNeeded;
-		for(Robot r : selected) {
-			if(r.isBusy()) {
-				System.out.println("You selected a robot that was busy.");
-				canDo = false;
-			}
-		}
-		if(canDo) {
-			for(Robot robot : selected) {
-				robot.move(job);
-				available.remove(robot);
-			}
-		}
-		else {
-			for(Robot r : selected) {
-				if(!r.isBusy()) {
-					r.move(job.location);
-				}
-			}
-		}
-		return canDo;
-	}
-	
+    @Override
+    public void registerJobAsFulfilled(Job job, List<Robot> robots) {
+        available.addAll(robots);
+        doJobs();
+    }
 
-	/**
-	 * Returns list of free robots
-	 * 
-	 * @return list of all available robots
-	 */
-	public List<Robot> getAvailableRobots(){
-		return new ArrayList<Robot>(available);
-	}
+    /**
+     * Finds jobs in backLog and assigns robots
+     */
+    protected void doJobs() {
+
+        while (!backLog.isEmpty()) {
+            Job job = selectJob();
+            //My own function
+            updateLocations(job);
+            List<Robot> selected = selectRobots(job);
+
+            if (assignRobots(selected, job))
+                removeJob(job);
+            else
+                break;
+        }
+        if (backLog.isEmpty())
+            moveFreeRobots();
+    }
+
+    /**
+     * Selects a Job from the list of available jobs
+     * Currently selects the job at the top of the list
+     *
+     * @return most appropriate job
+     */
+    protected Job selectJob() {
+        return backLog.peek();
+    }
+
+    protected void removeJob(Job job) {
+        if (backLog.peek().equals(job))
+            backLog.poll();
+        else
+            backLog.remove(job);
+    }
+
+    /**
+     * Select robots for the job. Should select robots most appropriate for the job.
+     *
+     * @param job       - The job to select robots for
+     * @param available - The Robots to select among
+     * @return return list of selected robots if the job can be executed, else return empty list
+     */
+    protected abstract List<Robot> selectRobots(Job job);
+
+    /**
+     * When a Robot is not assigned to a Job it is just waiting
+     * We can then position these robots such that when a new job comes in
+     * the robots are already close to the job.
+     */
+    protected void moveFreeRobots() {
+        // TODO: This method could be suited for task 3
+        double increment = Math.sqrt(available.size());
+        int robotsUsed = 0;
+        int numberInRow = 0;
+        outerloop:
+        for (int i = 0; i * increment < available.size(); i++) {
+            if (i == 1) {
+                numberInRow = robotsUsed;
+            }
+            for (int j = 0; j * increment < available.size(); j++) {
+                if (robotsUsed==available.size()) {
+                    break outerloop;
+                }
+                Robot robotToMove = available.get(j + i * numberInRow);
+                double locX = increment * j;
+                double locY = increment * i;
+                Location move = new Location(locX, locY);
+                robotToMove.move(move);
+                robotsUsed++;
+            }
+        }
+    }
+
+    private void updateLocations(Job job) {
+        if (job.location.dist(center) > furthest.dist(center)) {
+            furthest = job.location;
+        }
+    }
+
+    protected final Location center = new Location(0, 0);
+    protected Location furthest = center;
+
+    /**
+     * Sends the selected Robots to their Job
+     *
+     * @return true if robots assigned to job, false if not
+     */
+    boolean assignRobots(List<Robot> selected, Job job) {
+        if (selected == null)
+            return false;
+        if (selected.isEmpty())
+            return false;
+
+        boolean canDo = selected.size() >= job.robotsNeeded;
+        for (Robot r : selected) {
+            if (r.isBusy()) {
+                System.out.println("You selected a robot that was busy.");
+                canDo = false;
+            }
+        }
+        if (canDo) {
+            for (Robot robot : selected) {
+                robot.move(job);
+                available.remove(robot);
+            }
+        } else {
+            for (Robot r : selected) {
+                if (!r.isBusy()) {
+                    r.move(job.location);
+                }
+            }
+        }
+        return canDo;
+    }
+
+
+    /**
+     * Returns list of free robots
+     *
+     * @return list of all available robots
+     */
+    public List<Robot> getAvailableRobots() {
+        return new ArrayList<Robot>(available);
+    }
 
 }
