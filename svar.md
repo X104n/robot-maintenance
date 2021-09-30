@@ -29,7 +29,7 @@ For each method of the different strategies give a runtime analysis in Big-O not
 
 ### AbstractStrategy (if you use it)
 * ``doJobs()``: O(mkn + m^2) 
-    * *On doJobs we have the runtime from selectRobots inside off the code. The worst case in this instance would be O(mkn) or O(m^2). This is depending on if we assume that all the variables can go to infinity, then O(mkn) is the biggest of them. Furthermore, we have the knowledge from README.md that m>n>k in most instances which would give O(m^2) the longest runtime. However, according to Martin himself it isn't possible to short down O(mkn + m^2) which confuses me a lot.*
+    * *On doJobs we have the runtime from selectRobots inside off the code. The worst case in this instance would be O(mkn) or O(m^2). This is depending on if we assume that all the variables can go to infinity, then we cannot decide weather O(mkn) or O(m^2) has the biggest runtime. Furthermore, we have the knowledge from README.md that m>n>k in most instances which would give O(m^2) the longest runtime. But ill take base on what martin said to me which was we cannot decide which of these are the largest*
 * ``selectJob()``: O(1)
     * *On selectJob we only look at the first job in the queue, therefore the runtime is O(1)*
 * ``removeJob(Job job)``: O(m)
@@ -54,7 +54,7 @@ For each method of the different strategies give a runtime analysis in Big-O not
 
 ### AbstractStrategy (if you use it)
 * ``doJobs()``: O(mn log n + mkn + m^2)
-    * *DoJobs uses the closestStrategy selectRobots, which was O(n log n). Therefore, we have O(m(n log n) + mkn + m^2) = O(mn log n + mkn + m^2). And here we stumble upon the same problem as in task 1, where we haven't gotten clear information wheter to asume m>n>k or to assume that all of them goes to infinity. So im just going to write it as it is O(mn log n + mkn + m^2)*
+    * *DoJobs uses the closestStrategy selectRobots, which was O(n log n). Therefore, we have O(m(n log n) + mkn + m^2) = O(mn log n + mkn + m^2). And here we stumble upon the same problem as in task 1, where we haven't gotten clear information whether to assume m>n>k or to assume that all of them goes to infinity. So im just going to write it as it is O(mn log n + mkn + m^2)*
 * ``selectJob()``: O(1)
     * *Reads the first job in the backlog, which is O(1)*
 * ``removeJob(Job job)``: O(m)
@@ -66,29 +66,29 @@ For each method of the different strategies give a runtime analysis in Big-O not
 
 ### ClosestStrategy
 * ``selectRobots(Job job, List<Robot> available)``: O(n log n)
-    * *Yes*
+    * *The biggest runtime in this function is the .addAll of the PriorityQueue which gives us the runtime of O(n log n)*
 
 ## Task 3 - BetterStrategy
 ### IStrategy
-* ``registerRobots(List<Robot> robots)``: O(?)
-    * *Insert description of why the method has the given runtime*
-* ``registerNewJob(Job job)``: O(?)
-    * *Insert description of why the method has the given runtime*
-* ``registerJobAsFulfilled(Job job)``: O(?)
-    * *Insert description of why the method has the given runtime*
+* ``registerRobots(List<Robot> robots)``: O(n)
+    * *Nothing changes here between the different tasks*
+* ``registerNewJob(Job job)``: O(mn log n + mkn + m^2)
+    * *doJobs is still dominant in this function in betterStrategy*
+* ``registerJobAsFulfilled(Job job)``: O(mn log n + mkn + m^2)
+    * *doJobs is still dominant in this function in betterStrategy*
 
 ### AbstractStrategy (if you use it)
-* ``doJobs()``: O(?)
-    * *Insert description of why the method has the given runtime*
-* ``selectJob()``: O(?)
-    * *Insert description of why the method has the given runtime*
-* ``removeJob(Job job)``: O(?)
-    * *Insert description of why the method has the given runtime*
-* ``assignRobots(List<Robot> selected, Job job)``: O(?)
-    * *Insert description of why the method has the given runtime*
-* ``getAvailableRobots()``: O(?)
-    * *Insert description of why the method has the given runtime*
+* ``doJobs()``: O(mn log n + mkn + m^2)
+    * *Here we also use moveRobots, but this runtime is O(n log m) which is lower than the selectRobot section of this method and the runtime would therefore still be: O(mn log n + mkn + m^2)*
+* ``selectJob()``: O(1)
+    * *Looks at the information to the first object in the queue, and has the runtime of O(1)*
+* ``removeJob(Job job)``: O(m)
+    * *Runtime is the same as the other task, and is O(m)*
+* ``assignRobots(List<Robot> selected, Job job)``: O(kn)
+    * *Nothing changes here aswell, and the runtime is O(kn)*
+* ``getAvailableRobots()``: O(n)
+    * *The get available is the same as always and has the runtime of O(n)*
 
 ### BetterStrategy
-* ``selectRobots(Job job, List<Robot> available)``: O(?)
-    * *Insert description of why the method has the given runtime*
+* ``selectRobots(Job job, List<Robot> available)``: O(n log n)
+    * *The longest runtime here is the same as closestStrategy which gives us O(n log n)*

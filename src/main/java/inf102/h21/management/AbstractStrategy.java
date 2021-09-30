@@ -39,7 +39,7 @@ public abstract class AbstractStrategy implements IStrategy {
     /**
      * Finds jobs in backLog and assigns robots
      */
-    protected void doJobs() { //O(m(? + kn + m)) = O(m? + mkn + m^2)
+    protected void doJobs() { //O(m(? + kn + m)) =
 
         while (!backLog.isEmpty()) { //O(m)
             Job job = selectJob(); //O(1)
