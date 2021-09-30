@@ -15,6 +15,8 @@ Briefly describe your implementation in the different strategies. What was your 
 # Runtime Analysis
 For each method of the different strategies give a runtime analysis in Big-O notation and a description of why it has this runtime.
 
+*Ps: check the code to see the calculation of each of the functions*
+
 **If you have implemented new methods not listed you must add these as well.**
 ## Task 1 - RandomStrategy
 ### IStrategy
