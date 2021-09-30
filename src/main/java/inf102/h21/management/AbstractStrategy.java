@@ -17,47 +17,44 @@ public abstract class AbstractStrategy implements IStrategy {
      */
     protected Queue<Job> backLog;
 
-    public AbstractStrategy() {
+    public AbstractStrategy() { //O(1)
         backLog = new LinkedList<Job>();
-
     }
 
     @Override
-    public void registerRobots(List<Robot> robots) {
-        this.robots = new ArrayList<Robot>(robots);
-        available = new ArrayList<>(robots);
+    public void registerRobots(List<Robot> robots) { //O(n)
+        this.robots = new ArrayList<Robot>(robots); //O(n)
+        available = new ArrayList<>(robots); //O(n)
     }
 
     @Override
-    public void registerNewJob(Job job) {
-        backLog.add(job);
-        doJobs();
+    public void registerNewJob(Job job) { //O(n + ?)
+        backLog.add(job); //O(1)
+        doJobs(); //O(?)
     }
 
     @Override
-    public void registerJobAsFulfilled(Job job, List<Robot> robots) {
-        available.addAll(robots);
-        doJobs();
+    public void registerJobAsFulfilled(Job job, List<Robot> robots) { //O(n + ?)
+        available.addAll(robots); //O(n)
+        doJobs(); //O(?)
     }
 
     /**
      * Finds jobs in backLog and assigns robots
      */
-    protected void doJobs() {
+    protected void doJobs() { //O(m(? + kn + m)) = O(m? + mkn + m^2)
 
-        while (!backLog.isEmpty()) {
-            Job job = selectJob();
-            //My own function
-            updateLocations(job);
-            List<Robot> selected = selectRobots(job);
+        while (!backLog.isEmpty()) { //O(m)
+            Job job = selectJob(); //O(1)
+            List<Robot> selected = selectRobots(job); //O(?)
 
-            if (assignRobots(selected, job))
-                removeJob(job);
+            if (assignRobots(selected, job)) //O(kn)
+                removeJob(job); //O(m)
             else
                 break;
         }
-        if (backLog.isEmpty())
-            moveFreeRobots();
+        if (backLog.isEmpty())  //O(1)
+            moveFreeRobots(); //O(?)
     }
 
     /**
@@ -66,15 +63,15 @@ public abstract class AbstractStrategy implements IStrategy {
      *
      * @return most appropriate job
      */
-    protected Job selectJob() {
-        return backLog.peek();
+    protected Job selectJob() { //O(1)
+        return backLog.peek(); //O(1)
     }
 
-    protected void removeJob(Job job) {
-        if (backLog.peek().equals(job))
-            backLog.poll();
+    protected void removeJob(Job job) { //O(m)
+        if (backLog.peek().equals(job)) //O(1) + O(1)
+            backLog.poll(); //O(1)
         else
-            backLog.remove(job);
+            backLog.remove(job); //O(m)
     }
 
     /**
@@ -92,78 +89,47 @@ public abstract class AbstractStrategy implements IStrategy {
      * the robots are already close to the job.
      */
     protected void moveFreeRobots() {
-        // TODO: This method could be suited for task 3
-        double increment = Math.sqrt(available.size());
-        int robotsUsed = 0;
-        int numberInRow = 0;
-        outerloop:
-        for (int i = 0; i * increment < available.size(); i++) {
-            if (i == 1) {
-                numberInRow = robotsUsed;
-            }
-            for (int j = 0; j * increment < available.size(); j++) {
-                if (robotsUsed==available.size()) {
-                    break outerloop;
-                }
-                Robot robotToMove = available.get(j + i * numberInRow);
-                double locX = increment * j;
-                double locY = increment * i;
-                Location move = new Location(locX, locY);
-                robotToMove.move(move);
-                robotsUsed++;
-            }
-        }
     }
-
-    private void updateLocations(Job job) {
-        if (job.location.dist(center) > furthest.dist(center)) {
-            furthest = job.location;
-        }
-    }
-
-    protected final Location center = new Location(0, 0);
-    protected Location furthest = center;
 
     /**
      * Sends the selected Robots to their Job
      *
      * @return true if robots assigned to job, false if not
      */
-    boolean assignRobots(List<Robot> selected, Job job) {
-        if (selected == null)
+    boolean assignRobots(List<Robot> selected, Job job) { //O(n) + O(k(log m + n)) = O(k*log m + kn) = O(kn)
+        if (selected == null) //O(1)
             return false;
-        if (selected.isEmpty())
+        if (selected.isEmpty()) //O(1)
             return false;
 
-        boolean canDo = selected.size() >= job.robotsNeeded;
-        for (Robot r : selected) {
-            if (r.isBusy()) {
+        boolean canDo = selected.size() >= job.robotsNeeded; //O(1)
+        for (Robot r : selected) { //O(n)
+            if (r.isBusy()) { //O(1)
                 System.out.println("You selected a robot that was busy.");
                 canDo = false;
             }
         }
-        if (canDo) {
-            for (Robot robot : selected) {
-                robot.move(job);
-                available.remove(robot);
+        if (canDo) { //O(1)
+            for (Robot robot : selected) { //O(k)
+                robot.move(job); //O(log m)
+                available.remove(robot); //O(n)
             }
         } else {
-            for (Robot r : selected) {
-                if (!r.isBusy()) {
-                    r.move(job.location);
+            for (Robot r : selected) { //O(k)
+                if (!r.isBusy()) { //O(1)
+                    r.move(job.location); //O(log m)
                 }
             }
         }
         return canDo;
     }
 
-
     /**
      * Returns list of free robots
      *
      * @return list of all available robots
      */
-    public List<Robot> getAvailableRobots() {
+    public List<Robot> getAvailableRobots() { //O(n)
         return new ArrayList<Robot>(available);
     }
 

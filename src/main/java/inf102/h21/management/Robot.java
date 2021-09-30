@@ -42,7 +42,7 @@ public class Robot {
 	 *  
 	 * @param job - the job you want the robot to focus on
 	 */
-	public void move(Job job) {
+	public void move(Job job) { //O(log M)
 //		System.out.println(this+" moving to "+job);
 		state.move(id, job);
 	}
@@ -59,8 +59,7 @@ public class Robot {
 	 * 
 	 * @param location
 	 */
-	public void move(Location location) {
-		//System.out.println(this+" moving to "+location);
+	public void move(Location location) { //O(log m)
 		state.move(id, location);
 	}
 	
@@ -71,7 +70,7 @@ public class Robot {
 	 * 
 	 * @return
 	 */
-	public Location getLocation() {
+	public Location getLocation() { //O(1)
 		return state.getPosition(id);
 	}
 	
@@ -90,7 +89,7 @@ public class Robot {
 	 * @return null if robot is free, otherwise the job this robot is working towards.
 	 * 
 	 */
-	public Job getJob() {
+	public Job getJob() { //O(1)
 		return state.getTarget(id);
 	}
 	
@@ -101,7 +100,7 @@ public class Robot {
 	 * 
 	 * @return true if the robot is busy, false otherwise
 	 */
-	public boolean isBusy() {
+	public boolean isBusy() { //O(1)
 		return getJob()!=null;
 	}
 	

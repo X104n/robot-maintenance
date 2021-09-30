@@ -30,7 +30,7 @@ public class TestClient {
 	static List<IStrategy> getStrategies() {
 		// TODO: Enter the strategy you want to test here
 		ArrayList<IStrategy> strategies = new ArrayList<>();
-		strategies.add(new RandomStrategy());
+		//strategies.add(new RandomStrategy());
 		strategies.add(new ClosestStrategy());
 		strategies.add(new BetterStrategy());
 		return strategies;
@@ -50,7 +50,7 @@ public class TestClient {
 				strategy.registerRobots(model.listRobots());
 				model.runSimulation();
 				try { 
-					System.out.printf("Score %s: %.0f\n", file, model.score()); 
+					System.out.printf("Score %s: %.0f\n", file, model.score());
 				}
 				catch (IllegalStateException e) {
 					System.out.printf("Score on %s: %s\n", file, e.getMessage());

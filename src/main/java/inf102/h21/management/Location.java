@@ -19,7 +19,7 @@ public class Location{
 	 * @param l - given location
 	 * @return - The distance between the points as a double
 	 */
-	public double dist(Location l) {
+	public double dist(Location l) { //O(1)
 		return Math.sqrt((l.x -x)*(l.x -x) + (l.y - y)*(l.y -y));
 	}
 	
